@@ -15,6 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import { useAuth } from "@/hooks/useAuth";
 
 // Menu items.
 const items = [
@@ -52,6 +53,7 @@ const items = [
 
 const MainSidebar = () => {
   const { state } = useSidebar();
+  const { user } = useAuth();
 
   return (
     <Sidebar collapsible="icon">
@@ -64,7 +66,7 @@ const MainSidebar = () => {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>{user?.firstName}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

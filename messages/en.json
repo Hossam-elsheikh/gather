@@ -1,5 +1,41 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "Languages": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "zh": "中文",
+    "ja": "日本語",
+    "pt": "Português",
+    "ru": "Русский"
+  },
+  "Auth": {
+    "login": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot your password?",
+      "loginButton": "Login",
+      "loginWithGoogle": "Login with Google",
+      "signupLink": "Sign Up"
+    },
+    "register": {
+      "title": "Create a new account",
+      "description": "Please fill the following details to create an account",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "repeatPassword": "Repeat Password",
+      "signupButton": "Signup",
+      "signupWithGoogle": "Signup with Google",
+      "loginLink": "Login"
+    }
   }
 }
