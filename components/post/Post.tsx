@@ -1,176 +1,178 @@
-'use client';
-import { useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+"use client";
+
+import React from "react";
+import {
+  ArrowBigUp,
+  ArrowBigDown,
+  MessageSquare,
+  MoreHorizontal,
+  Share2,
+  Trophy,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ArrowUp, ArrowDown } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { formatDistanceToNow } from "date-fns";
 
-export type Comment = {
+export interface PostProps {
   id: string;
+  community: {
+    name: string;
+    icon?: string;
+  };
   author: {
     name: string;
     avatar?: string;
   };
-  content: string;
-  createdAt: string;
-};
+  title: string;
+  content?: string;
+  image?: string | string[];
+  createdAt: string | Date;
+  upvotes: number;
+  commentsCount: number;
+  isSuggested?: boolean;
+}
 
-export type PostProps = {
-  id: string;
-  author: {
-    name: string;
-    avatar?: string;
-  };
-  content: string;
-  image?: string; // optional image
-  createdAt: string;
-  comments?: Comment[];
-};
-
-export const dummyPosts: PostProps[] = [
-  {
-    id: "1",
-    author: { name: "Alice Johnson", avatar: "https://i.pravatar.cc/150?img=1" },
-    content: "Had a great day exploring the city!",
-    image: "https://picsum.photos/500/300?random=1",
-    createdAt: new Date().toISOString(),
-    comments: [
-      { id: "c1", author: { name: "Bob Smith", avatar: "https://i.pravatar.cc/150?img=2" }, content: "Looks amazing!", createdAt: new Date().toISOString() },
-      { id: "c2", author: { name: "Carol Lee" }, content: "Wish I was there!", createdAt: new Date().toISOString() }
-    ]
-  },
-  {
-    id: "2",
-    author: { name: "David Kim" },
-    content: "Check out this cool sunset photo.",
-    image: "https://picsum.photos/500/300?random=2",
-    createdAt: new Date().toISOString(),
-    comments: []
-  },
-  {
-    id: "3",
-    author: { name: "Eva Green", avatar: "https://i.pravatar.cc/150?img=3" },
-    content: "Learning React is so much fun!",
-    createdAt: new Date().toISOString(),
-    comments: [
-      { id: "c3", author: { name: "Frank" }, content: "Totally agree!", createdAt: new Date().toISOString() }
-    ]
-  }
-];
-
-export default function Post({
+const Post = ({
+  community,
   author,
+  title,
   content,
   image,
   createdAt,
-  comments = [],
-}: PostProps) {
-  const [showComments, setShowComments] = useState(false);
-  const [newComment, setNewComment] = useState("");
-  const [localComments, setLocalComments] = useState<Comment[]>(comments);
-  const [votes, setVotes] = useState({ up: 0, down: 0 });
-
-  const handleAddComment = () => {
-    if (!newComment.trim()) return;
-
-    setLocalComments((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        author: { name: "You" },
-        content: newComment,
-        createdAt: new Date().toISOString(),
-      },
-    ]);
-    setNewComment("");
-  };
+  upvotes,
+  commentsCount,
+  isSuggested = false,
+}: PostProps) => {
+  const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
 
   return (
-    <Card className="w-full max-w-2xl mx-auto rounded-2xl shadow-sm">
-      <CardHeader className="flex flex-row items-center gap-3">
-        <Avatar>
-          <AvatarImage src={author.avatar} />
-          <AvatarFallback>{author.name[0]}</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-col">
-          <span className="font-semibold">{author.name}</span>
-          <span className="text-xs text-muted-foreground">
-            {new Date(createdAt).toLocaleString()}
-          </span>
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-4">
-        <p className="text-sm leading-relaxed">{content}</p>
-
-        {image && (
-          <img
-            src={image}
-            alt="Post image"
-            className="w-full rounded-xl border"
-          />
-        )}
-
-        <div className="flex items-center gap-4 pt-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1"
-            onClick={() => setVotes((v) => ({ ...v, up: v.up + 1 }))}
-          >
-            <ArrowUp className="h-4 w-4" /> {votes.up}
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1"
-            onClick={() => setVotes((v) => ({ ...v, down: v.down + 1 }))}
-          >
-            <ArrowDown className="h-4 w-4" /> {votes.down}
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1"
-            onClick={() => setShowComments((v) => !v)}
-          >
-            <MessageCircle className="h-4 w-4" />
-            {localComments.length} Comments
-          </Button>
-        </div>
-
-        {showComments && (
-          <div className="space-y-4 pt-4 border-t">
-            {localComments.map((comment) => (
-              <div key={comment.id} className="flex gap-3">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={comment.author.avatar} />
-                  <AvatarFallback>{comment.author.name[0]}</AvatarFallback>
-                </Avatar>
-                <div className="bg-muted rounded-xl px-3 py-2 text-sm w-full">
-                  <span className="font-medium">
-                    {comment.author.name}
-                  </span>
-                  <p className="text-xs text-muted-foreground">
-                    {new Date(comment.createdAt).toLocaleString()}
-                  </p>
-                  <p className="mt-1">{comment.content}</p>
-                </div>
-              </div>
-            ))}
-
-            <div className="space-y-2 flex gap-2 flex-col">
-              <textarea
-                placeholder="Write a comment..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                className="w-full rounded-md border px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              
-            </div>
+    <article className="group flex flex-col gap-3 rounded-[20px] bg-white p-4 transition-all hover:bg-gray-50 border border-transparent hover:border-gray-200">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 text-xs">
+          <Avatar className="h-6 w-6">
+            <AvatarImage src={community.icon} alt={community.name} />
+            <AvatarFallback className="bg-orange-500 text-[10px] text-white font-bold">
+              {community.name.substring(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="font-bold text-foreground hover:underline cursor-pointer">
+              {community.name}
+            </span>
+            <span className="text-muted-foreground">•</span>
+            <span className="text-muted-foreground">{timeAgo}</span>
+            {isSuggested && (
+              <>
+                <span className="text-muted-foreground">•</span>
+                <span className="text-muted-foreground">Suggested for you</span>
+              </>
+            )}
           </div>
-        )}
-      </CardContent>
-    </Card>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Button
+            variant="default"
+            size="sm"
+            className="h-8 rounded-full bg-[#0045AC] px-4 font-bold hover:bg-[#003d97] text-white"
+          >
+            Join
+          </Button>
+          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+            <MoreHorizontal className="h-5 w-5 text-muted-foreground" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Title */}
+      <h2 className="text-lg font-bold leading-tight text-foreground cursor-pointer hover:text-primary transition-colors">
+        {title}
+      </h2>
+
+      {/* Media Content */}
+      {image && (
+        <div className="relative mt-1 overflow-hidden rounded-xl bg-gray-100 ring-1 ring-inset ring-black/5">
+          {Array.isArray(image) ? (
+            // Basic support for the first image if array
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={image[0]}
+                alt={title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+          ) : (
+            <div className="relative aspect-auto w-full min-h-[300px]">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Text Content */}
+      {content && !image && (
+        <p className="line-clamp-6 text-sm leading-relaxed text-muted-foreground">
+          {content}
+        </p>
+      )}
+
+      {/* Footer / Actions */}
+      <div className="flex items-center gap-2 mt-1">
+        {/* Voting */}
+        <div className="flex items-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors h-9">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-9 w-9 rounded-l-full hover:bg-orange-100 hover:text-orange-600 transition-colors focus-visible:ring-0"
+          >
+            <ArrowBigUp className="h-6 w-6" />
+          </Button>
+          <span className="px-1 text-sm font-bold min-w-[20px] text-center">
+            {upvotes}
+          </span>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-9 w-9 rounded-r-full hover:bg-indigo-100 hover:text-indigo-600 transition-colors focus-visible:ring-0"
+          >
+            <ArrowBigDown className="h-6 w-6" />
+          </Button>
+        </div>
+
+        {/* Comments */}
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2 rounded-full bg-gray-100 h-9 px-4 hover:bg-gray-200 focus-visible:ring-0"
+        >
+          <MessageSquare className="h-5 w-5" />
+          <span className="text-sm font-bold">{commentsCount}</span>
+        </Button>
+
+       
+
+        {/* Share */}
+        <Button
+          variant="ghost"
+          className="flex items-center gap-2 rounded-full bg-gray-100 h-9 px-4 hover:bg-gray-200 focus-visible:ring-0"
+        >
+          <Share2 className="h-5 w-5" />
+          <span className="text-sm font-bold">Share</span>
+        </Button>
+      </div>
+      <hr />
+    </article>
   );
-}
+};
+
+export default Post;

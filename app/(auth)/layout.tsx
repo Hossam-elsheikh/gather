@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { ReactNode } from "react";
 import Puzzle from "@/public/login.jpg";
 import Transition from "@/components/auth/Transition";
+import { PublicRoute } from "@/components/auth/AuthGuard";
 
 type Props = {
   children: ReactNode;
@@ -16,14 +17,22 @@ export const metadata: Metadata = {
 
 const LandingLayout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen flex  w-full ">
-      <div className="w-full lg:w-1/2 flex flex-col  items-center justify-center">
-        <Transition>{children}</Transition>
+    <PublicRoute>
+      <div className="min-h-screen flex  w-full ">
+        <div className="w-full lg:w-1/2 flex flex-col  items-center justify-center">
+          <Transition>{children}</Transition>
+        </div>
+        <div className="w-1/2 hidden lg:flex flex-col  items-center justify-center">
+          <Image
+            className="w-full h-[calc(100vh)] object-cover"
+            width={700}
+            height={500}
+            src={Puzzle}
+            alt="image"
+          />
+        </div>
       </div>
-      <div className="w-1/2 hidden lg:flex flex-col  items-center justify-center">
-        <Image className="w-full h-[calc(100vh)] object-cover" width={700} height={500} src={Puzzle} alt="image" />
-      </div>
-    </div>
+    </PublicRoute>
   );
 };
 

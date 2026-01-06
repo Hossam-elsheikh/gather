@@ -32,7 +32,10 @@ const LoginForm = () => {
     onSuccess: () => {
       toast.success("Logged in successfully!");
       queryClient.invalidateQueries({ queryKey: ["user"] });
-      router.push("/feed");
+
+      const searchParams = new URLSearchParams(window.location.search);
+      const callbackUrl = searchParams.get("callbackUrl") || "/feed";
+      router.push(callbackUrl);
     },
     onError: (error: any) => {
       console.error(error);
