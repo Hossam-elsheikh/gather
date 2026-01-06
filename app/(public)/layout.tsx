@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const LandingLayout = ({ children }: Props) => {
-  return <div className="min-h-screen flex flex-col w-full xl:w-[1400px] mx-auto">
+  return <div className="min-h-screen flex flex-col w-full xl:w-[1400px] mx-auto px-4">
     <LandingNavbar/>
     {children}</div>;
 };

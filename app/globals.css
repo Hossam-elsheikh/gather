@@ -1,6 +1,23 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@layer utilities {
+  @keyframes horizontal-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
+  .animate-horizontal-scroll {
+    animation: horizontal-scroll 30s linear infinite;
+     will-change: transform;
+  }
+  .animate-horizontal-scroll:hover {
+  animation-play-state: paused;
+}
+}
 @custom-variant dark (&:is(.dark *));
 
 .signin-special-btn {
@@ -39,6 +56,7 @@
     background: linear-gradient(270deg, var(--accent), var(--primary)) !important;
   }
 }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
