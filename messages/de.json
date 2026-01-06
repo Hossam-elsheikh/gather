@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Hallo Welt!"
+  },
+  "Languages": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "zh": "中文",
+    "ja": "日本語",
+    "pt": "Português",
+    "ru": "Русский"
+  },
+  "Auth": {
+    "login": {
+      "title": "In Ihr Konto einloggen",
+      "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich in Ihr Konto einzuloggen",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "loginButton": "Einloggen",
+      "loginWithGoogle": "Mit Google einloggen",
+      "signupLink": "Registrieren"
+    },
+    "register": {
+      "title": "Ein neues Konto erstellen",
+      "description": "Bitte füllen Sie die folgenden Details aus, um ein Konto zu erstellen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "username": "Benutzername",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "repeatPassword": "Passwort wiederholen",
+      "signupButton": "Registrieren",
+      "signupWithGoogle": "Mit Google registrieren",
+      "loginLink": "Einloggen"
+    }
+  }
+}

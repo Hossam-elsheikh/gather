@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "ハローワールド！"
+  },
+  "Languages": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "zh": "中文",
+    "ja": "日本語",
+    "pt": "Português",
+    "ru": "Русский"
+  },
+  "Auth": {
+    "login": {
+      "title": "アカウントにログイン",
+      "description": "以下にメールアドレスを入力してアカウントにログインしてください",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "forgotPassword": "パスワードをお忘れですか？",
+      "loginButton": "ログイン",
+      "loginWithGoogle": "Googleでログイン",
+      "signupLink": "新規登録"
+    },
+    "register": {
+      "title": "新規アカウント作成",
+      "description": "アカウントを作成するには、以下の詳細を入力してください",
+      "firstName": "名",
+      "lastName": "姓",
+      "username": "ユーザー名",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "repeatPassword": "パスワード（確認）",
+      "signupButton": "登録",
+      "signupWithGoogle": "Googleで登録",
+      "loginLink": "ログイン"
+    }
+  }
+}

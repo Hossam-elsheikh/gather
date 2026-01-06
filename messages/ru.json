@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "Привет, мир!"
+  },
+  "Languages": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "zh": "中文",
+    "ja": "日本語",
+    "pt": "Português",
+    "ru": "Русский"
+  },
+  "Auth": {
+    "login": {
+      "title": "Войти в аккаунт",
+      "description": "Введите свой адрес электронной почты ниже, чтобы войти в свой аккаунт",
+      "email": "Электронная почта",
+      "password": "Пароль",
+      "forgotPassword": "Забыли пароль?",
+      "loginButton": "Войти",
+      "loginWithGoogle": "Войти через Google",
+      "signupLink": "Зарегистрироваться"
+    },
+    "register": {
+      "title": "Создать новый аккаунт",
+      "description": "Пожалуйста, заполните следующие данные, чтобы создать аккаунт",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "username": "Имя пользователя",
+      "email": "Электронная почта",
+      "password": "Пароль",
+      "repeatPassword": "Повторите пароль",
+      "signupButton": "Зарегистрироваться",
+      "signupWithGoogle": "Зарегистрироваться через Google",
+      "loginLink": "Войти"
+    }
+  }
+}

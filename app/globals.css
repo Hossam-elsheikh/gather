@@ -1,7 +1,61 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@layer utilities {
+  @keyframes horizontal-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
+  .animate-horizontal-scroll {
+    animation: horizontal-scroll 30s linear infinite;
+     will-change: transform;
+  }
+  .animate-horizontal-scroll:hover {
+  animation-play-state: paused;
+}
+}
 @custom-variant dark (&:is(.dark *));
+
+.signin-special-btn {
+  background: linear-gradient(
+    120deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent),
+    var(--primary)
+  ) !important;
+  background-size: 300% 300% !important;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none !important;
+  position: relative;
+  z-index: 1;
+}
+
+.signin-special-btn:hover {
+  animation: gradient-move 0.3s ease infinite;
+  /* box-shadow: 0 0 15px var(--primary); */
+  transform: translateY(-2px) scale(1.05);
+}
+@keyframes gradient-move {
+  0% {
+    /* background-position: 0% 50%; */
+    background: linear-gradient(0deg, var(--accent), var(--primary)) !important;
+  }
+  50% {
+    /* background-position: 100% 50%; */
+    background: linear-gradient(90deg, var(--secondary), var(--accent)) !important;
+  }
+  100% {
+    /* background-position: 0% 50%; */
+    background: linear-gradient(270deg, var(--accent), var(--primary)) !important;
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -46,6 +100,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -79,7 +134,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-}
+} 
 
 .dark {
   --background: oklch(0.145 0 0);
@@ -113,7 +168,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
+} 
 
 @layer base {
   * {
@@ -123,3 +178,6 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+

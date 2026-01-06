@@ -1,0 +1,41 @@
+{
+  "HomePage": {
+    "title": "你好，世界！"
+  },
+  "Languages": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "zh": "中文",
+    "ja": "日本語",
+    "pt": "Português",
+    "ru": "Русский"
+  },
+  "Auth": {
+    "login": {
+      "title": "登录到您的账户",
+      "description": "在下方输入您的电子邮件以登录到您的账户",
+      "email": "电子邮件",
+      "password": "密码",
+      "forgotPassword": "忘记密码？",
+      "loginButton": "登录",
+      "loginWithGoogle": "使用 Google 登录",
+      "signupLink": "注册"
+    },
+    "register": {
+      "title": "创建新账户",
+      "description": "请填写以下详细信息以创建账户",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "username": "用户名",
+      "email": "电子邮件",
+      "password": "密码",
+      "repeatPassword": "重复密码",
+      "signupButton": "注册",
+      "signupWithGoogle": "使用 Google 注册",
+      "loginLink": "登录"
+    }
+  }
+}
