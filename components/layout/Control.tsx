@@ -60,7 +60,7 @@ const Control = () => {
             <Avatar className="h-8 w-8">
               <AvatarImage src={user?.avatar} alt={user?.firstName} />
               <AvatarFallback className="bg-primary/10 text-primary">
-                {user?.firstName?.charAt(0)}
+                {user?.username?.charAt(0)}
               </AvatarFallback>
             </Avatar>
           </Button>

@@ -23,10 +23,10 @@
 .signin-special-btn {
   background: linear-gradient(
     120deg,
-    var(--primary),
-    var(--secondary),
-    var(--accent),
-    var(--primary)
+    #6E026F,
+    #F16D34,
+    #F9C74F,
+    #6E026F
   ) !important;
   background-size: 300% 300% !important;
   color: white !important;

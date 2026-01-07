@@ -51,12 +51,13 @@ const RegisterForm = () => {
       return;
     }
     const userInfo = {
-      firstName:data.firstName,
-      lastName:data.lastName,
+
       username:data.username,
       email:data.email,
       password:data.password
     }
+    console.log(userInfo);
+    
     mutation.mutate(userInfo);
   };
 
@@ -81,26 +82,7 @@ const RegisterForm = () => {
         <CardContent>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="firstName">{t("firstName")}</Label>
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  placeholder="Hossam"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="lastName">{t("lastName")}</Label>
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  placeholder="Elsheikh"
-                  required
-                />
-              </div>
+              
               <div className="grid gap-2">
                 <Label htmlFor="username">{t("username")}</Label>
                 <Input
